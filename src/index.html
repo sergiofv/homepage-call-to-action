@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Call to action</title>
+
+    <script type="module" src="/build/call-to-action-stencil.esm.js"></script>
+    <script nomodule src="/build/call-to-action-stencil.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <homepage-component
+      headline="Lorem Ipsum"
+      title-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      main-text="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+      image-path="https://images.unsplash.com/photo-1516528387618-afa90b13e000?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+    ></homepage-component>
+  </body>
+</html>
+
+<script>
+  const fetchTitle = index =>
+    fetch(`https://gnews.io/api/v4/search?q=basketball&token=${API_KEY}`)
+      .then(response => response.json())
+      .then(parsedResponse => parsedResponse.articles[index].title);
+
+  const homepageComponent = document.querySelector('homepage-component');
+  homepageComponent.footers = [
+    {
+      buttonLabel: 'Button A',
+      buttonClass: 'btn--dark',
+      title: 'INFO',
+      content:
+        'Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
+      isShown: true,
+      class: 'footer--dark',
+    },
+    {
+      buttonLabel: 'Button B',
+      buttonClass: 'btn--mid',
+      title: 'ABOUT',
+      content: 'Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.',
+      isShown: null,
+      class: 'footer--mid',
+    },
+    {
+      buttonLabel: 'Button C',
+      buttonClass: 'btn--light',
+      title: 'CONTACT',
+      content: 'Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.',
+      isShown: null,
+      class: 'footer--light',
+    },
+  ];
+</script>
