@@ -1,4 +1,5 @@
 import { Component, h, Prop, State } from '@stencil/core';
+import { API_KEY } from '../../global/global';
 
 interface Button {
   class: string;
@@ -9,9 +10,6 @@ interface Button {
 export interface Footer {
   buttonLabel: string;
   buttonClass: string;
-  title: string;
-  content: string;
-  isShown: boolean | null;
   class: string;
 }
 
@@ -21,6 +19,7 @@ export interface Footer {
   shadow: true,
 })
 export class HomepageComponent {
+  @Prop() about: string;
   @Prop() headline: string;
   @Prop() titleText: string;
   @Prop() mainText: string;
@@ -29,9 +28,15 @@ export class HomepageComponent {
   @State() isOpen: boolean;
   @State() isIndex: number | null;
 
-  // use only index state, null is false, number is true (active index = true)
-  // fetch API for button data, consume text for buttonLabel and content
-  // toggle when clicking button (close again)
+  @Prop({ reflect: true, mutable: true }) apiTitle: string;
+  @Prop({ reflect: true, mutable: true }) apiContent: string;
+
+  async fetchData(index) {
+    const response = await fetch(`https://newsapi.org/v2/everything?q=${this.about}&from=2022-02-13&sortBy=publishedAt&apiKey=${API_KEY}`);
+    const data = await response.json();
+    this.apiTitle = data.articles[index].title;
+    this.apiContent = data.articles[index].description;
+  }
 
   handleClose = () => {
     this.isIndex = null;
@@ -39,6 +44,7 @@ export class HomepageComponent {
   };
 
   handleFooterToggle(footerIndex) {
+    this.fetchData(footerIndex);
     this.isIndex = footerIndex;
     this.isOpen = true;
   }
@@ -49,10 +55,10 @@ export class HomepageComponent {
         <span class="arrow"></span>
         <div class="flx">
           <button onClick={() => this.handleClose()}>X</button>
-          <h3>{footer.title}</h3>
+          <h3>{this.apiTitle}</h3>
         </div>
         <div>
-          <p>{footer.content}</p>
+          <p>{this.apiContent}</p>
         </div>
       </div>
     );

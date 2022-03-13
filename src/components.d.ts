@@ -8,6 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Footer } from "./components/homepage-component/homepage-component";
 export namespace Components {
     interface HomepageComponent {
+        "about": string;
+        "apiContent": string;
+        "apiTitle": string;
         "footers": Footer[];
         "headline": string;
         "imagePath": string;
@@ -49,6 +52,9 @@ declare global {
 }
 declare namespace LocalJSX {
     interface HomepageComponent {
+        "about"?: string;
+        "apiContent"?: string;
+        "apiTitle"?: string;
         "footers"?: Footer[];
         "headline"?: string;
         "imagePath"?: string;

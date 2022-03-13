@@ -14,6 +14,7 @@
   </head>
   <body>
     <homepage-component
+      about="Batman"
       headline="Lorem Ipsum"
       title-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       main-text="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
@@ -23,36 +24,21 @@
 </html>
 
 <script>
-  const fetchTitle = index =>
-    fetch(`https://gnews.io/api/v4/search?q=basketball&token=${API_KEY}`)
-      .then(response => response.json())
-      .then(parsedResponse => parsedResponse.articles[index].title);
-
   const homepageComponent = document.querySelector('homepage-component');
   homepageComponent.footers = [
     {
       buttonLabel: 'Button A',
       buttonClass: 'btn--dark',
-      title: 'INFO',
-      content:
-        'Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
-      isShown: true,
       class: 'footer--dark',
     },
     {
       buttonLabel: 'Button B',
       buttonClass: 'btn--mid',
-      title: 'ABOUT',
-      content: 'Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.',
-      isShown: null,
       class: 'footer--mid',
     },
     {
       buttonLabel: 'Button C',
       buttonClass: 'btn--light',
-      title: 'CONTACT',
-      content: 'Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.',
-      isShown: null,
       class: 'footer--light',
     },
   ];
