@@ -10,6 +10,7 @@ export namespace Components {
     interface HomepageComponent {
         "about": string;
         "apiContent": string;
+        "apiLink": string;
         "apiTitle": string;
         "footers": Footer[];
         "headline": string;
@@ -54,6 +55,7 @@ declare namespace LocalJSX {
     interface HomepageComponent {
         "about"?: string;
         "apiContent"?: string;
+        "apiLink"?: string;
         "apiTitle"?: string;
         "footers"?: Footer[];
         "headline"?: string;

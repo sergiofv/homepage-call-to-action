@@ -1,5 +1,5 @@
 :host {
-  font-family: sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   overflow-x: hidden;
   display: block;
 }
@@ -114,7 +114,11 @@ img {
   margin: 10px 0 0 165px;
 }
 
-.footer p, .footer--dark p, .footer--mid p, .footer--light p {
+.footer p, .footer--dark p, .footer--mid p, .footer--light p,
+.footer a,
+.footer--dark a,
+.footer--mid a,
+.footer--light a {
   font-size: 16px;
   margin: 10px 200px 10px 200px;
 }

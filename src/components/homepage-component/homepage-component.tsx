@@ -1,6 +1,4 @@
 import { Component, h, Prop, State } from '@stencil/core';
-import { API_KEY } from '../../global/global';
-
 interface Button {
   class: string;
   text: string;
@@ -30,12 +28,14 @@ export class HomepageComponent {
 
   @Prop({ reflect: true, mutable: true }) apiTitle: string;
   @Prop({ reflect: true, mutable: true }) apiContent: string;
+  @Prop({ reflect: true, mutable: true }) apiLink: string;
 
   async fetchData(index) {
-    const response = await fetch(`https://newsapi.org/v2/everything?q=${this.about}&from=2022-02-13&sortBy=publishedAt&apiKey=${API_KEY}`);
+    const response = await fetch(`https://newsapi.org/v2/everything?q=${this.about}&from=2022-02-14&sortBy=publishedAt&apiKey=${process.env.API_KEY}`);
     const data = await response.json();
     this.apiTitle = data.articles[index].title;
     this.apiContent = data.articles[index].description;
+    this.apiLink = data.articles[index].url;
   }
 
   handleClose = () => {
@@ -59,6 +59,11 @@ export class HomepageComponent {
         </div>
         <div>
           <p>{this.apiContent}</p>
+        </div>
+        <div>
+          <a target="_blank" href={this.apiLink}>
+            See more.
+          </a>
         </div>
       </div>
     );
